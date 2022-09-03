@@ -8,7 +8,6 @@
 /*----------------------------------------------------------------------------*/
 
 #include "vex.h"
-#include "GUI.h"
 
 #include <string>
 
@@ -770,11 +769,11 @@ void usercontrol( void ) {
   }
 }
 
-
 //-------------------------------------------------------main-------------------------------------------------------------------------------
 
 int main() {
     vexcodeInit();
+    brainGUI();
     Competition.drivercontrol(usercontrol);
     Competition.autonomous(autonomous);
     

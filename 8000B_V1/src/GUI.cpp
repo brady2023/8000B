@@ -1,13 +1,11 @@
 #include "vex.h"
-#include "robot-config.h"
-#include "unistd.h"
 #include <cmath>
 
 using namespace vex;
 
 
 void draw_grid(void) { 
-    Brain.Screen.drawImageFromFile("meme.JPG", 0, 0);
+    //Brain.Screen.drawImageFromFile("meme.JPG", 0, 0);
     Brain.Screen.setPenColor(color::red);
     
     for (int i = 0; i < 2; i ++) {
@@ -42,7 +40,7 @@ void brainGUI() {
               draw_touch();
               Brain.Screen.render();
           }
-          sleep(1); //wait a second for their hand to get a little further away
+          vex::task::sleep(1); //wait a second for their hand to get a little further away
           if (Brain.Screen.yPosition() > 160) {                   //released in bottom third of the screen
               if (Brain.Screen.xPosition() < 160) {                   //released in left third of the screen
                   Brain.Screen.print("bottom left");
@@ -79,7 +77,7 @@ void brainGUI() {
           }
           //dt.stop(brakeType::coast);
       } else {
-          sleep(0.1);
+          vex::task::sleep(0.1);
       }
   }
 }
