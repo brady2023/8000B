@@ -18,13 +18,13 @@ RED = 36:1
 
 //chassis motors
 //left
-motor chassisLF = motor(vex::PORT9, vex::gearSetting::ratio6_1, false);
-motor chassisLM = motor(vex::PORT3, vex::gearSetting::ratio6_1, false);
-motor chassisLB = motor(vex::PORT7, vex::gearSetting::ratio6_1, false);
+motor chassisLF = motor(vex::PORT18, vex::gearSetting::ratio6_1, true);
+motor chassisLM = motor(vex::PORT19, vex::gearSetting::ratio6_1, true);
+motor chassisLB = motor(vex::PORT20, vex::gearSetting::ratio6_1, false);
 //right
-motor chassisRF = motor (vex::PORT10, vex::gearSetting::ratio6_1, true);
-motor chassisRM = motor(vex::PORT1, vex::gearSetting::ratio6_1, true);
-motor chassisRB = motor (vex::PORT2, vex::gearSetting::ratio6_1, true);
+motor chassisRF = motor (vex::PORT14, vex::gearSetting::ratio6_1, false);
+motor chassisRM = motor(vex::PORT15, vex::gearSetting::ratio6_1, false);
+motor chassisRB = motor (vex::PORT16, vex::gearSetting::ratio6_1, true);
 
 //triport expander
 triport expander = triport(vex::PORT11);
@@ -32,12 +32,12 @@ triport expander = triport(vex::PORT11);
 //pneumatics - pneumatics <name> = pneumatics(expander.<Letter>);
 
 //sensors 
-inertial inert = inertial(vex::PORT4);
+//inertial inert = inertial(vex::PORT4);
 
 // called when program opens
 void vexcodeInit(void) {
   //inert.calibrate();
-  inert.setHeading(1, degrees);
+  //inert.setHeading(1, degrees);
   //set motor stopping
   //lift.setStopping(hold);
   //set pistons to default stage
