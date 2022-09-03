@@ -26,7 +26,7 @@ extern motor chassisRB;
 extern triport expander;
 
 //sensors
-extern inertial inert;
+//extern inertial inert;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

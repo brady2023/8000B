@@ -8,6 +8,7 @@
 /*----------------------------------------------------------------------------*/
 
 #include "vex.h"
+#include "GUI.h"
 
 #include <string>
 
@@ -33,14 +34,14 @@ const double gPerInch = 386.04; //in inch/s/s
 //Chassis Constants
 const double WHEEL_RADIUS = 3.25/2.0;
 const double wheelCircumference = 2 * WHEEL_RADIUS * pi;
-const double motorToLift = 72/12;
+//const double motorToLift = 72/12;
 const int encoderTicksPerRev = 300;
 const double ticksPerTurn = 1000;
 const double turningRadius = 13.4; //tested
 
 //Speed Constants
-const double liftSpeed = 100;
-const double ringSpeed = 100;
+//const double liftSpeed = 100;
+//const double ringSpeed = 100;
 
 //Chassis States
 int backState = 2; //0 is unclamped, 1 if clamp down, 2 is tilt + clamp
@@ -239,8 +240,10 @@ void turn(double degrees) {
   const double kD = 0;
 
   //set init values
-  double currHeading = inert.heading();
-  double error = (degrees - currHeading);
+  //double currHeading = inert.heading();
+  //double error = (degrees - currHeading);
+  //added code
+  double error = degrees;
   //do left turn
   double adjust = 0;
   if (error > 180){
@@ -253,8 +256,8 @@ void turn(double degrees) {
   //loop --> change val to make a bit faster and less acurate
   while(fabs(error) >= .5) {
 
-    currHeading = inert.heading();
-    error = (degrees - currHeading);
+    //currHeading = inert.heading();
+    //error = (degrees - currHeading);
 
     //if have to turn left, make error negative
     if(error < 180){
@@ -478,7 +481,7 @@ double kD = 3.4; //3.4 for quals
 double C = .5; //.5 for quals
 
 void chassisPIDMove(double inches){
-   double initHeading = inert.heading();
+   //double initHeading = inert.heading();
 
    double revolutions = inches / (wheelCircumference - 2.18);//wheel circumference. 
    double degrees = revolutions * 360;//How many degrees the wheels need to turn
@@ -532,7 +535,7 @@ void chassisPIDMove(double inches){
      powerL = Limit((proportionalL + derivativeL),-600,600);
      powerR = Limit((proportionalR + derivativeR),-600, 600);
      
-     double currAngle = inert.heading();
+     /*double currAngle = inert.heading();
 
      if(currAngle > initHeading + 180){
        currAngle -= 360;
@@ -540,7 +543,7 @@ void chassisPIDMove(double inches){
 
      double movementError = initHeading - currAngle;
      setChassisLSmooth(powerL - C * movementError);
-     setChassisRSmooth(powerR + C * movementError);
+     setChassisRSmooth(powerR + C * movementError);*/
 
      vex::task::sleep(10);
    }
@@ -761,7 +764,7 @@ void usercontrol( void ) {
     Controller1.Screen.print(message.c_str());
 
     Controller1.Screen.newLine();
-    Controller1.Screen.print(inert.heading());
+    //Controller1.Screen.print(inert.heading());
     
     vex::task::sleep(20); //DO NOT DELETE -- Sleep the task for a short amount of time to prevent wasted resources. 
   }
